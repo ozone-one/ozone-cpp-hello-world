@@ -6,9 +6,12 @@ FROM alpine
 RUN apk update && apk add git cmake make clang build-base llvm-static llvm-dev clang-static clang-dev
 
 # Copy the current folder which contains C++ source code to the Docker image
+RUN mkdir /build
+WORKDIR /build
+
 COPY . .
 # Specify the working directory
-WORKDIR .
+
 
 EXPOSE 3000
 

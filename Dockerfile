@@ -15,10 +15,10 @@ RUN cmake -B build -S .
 RUN cmake --build build
 
 FROM ubuntu:latest
-RUN apt-get -y update && apt-get install -y
-RUN apt-get -y install g++ cmake
+# RUN apt-get -y update && apt-get install -y
+# RUN apt-get -y install g++ cmake
 COPY --from=builder /build /build
-# WORKDIR /build
+WORKDIR /
 # RUN ls -l
 # RUN chmod +x WebServer
 

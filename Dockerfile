@@ -23,4 +23,4 @@ WORKDIR /
 EXPOSE 3000
 
 # Run the built application
-ENTRYPOINT [ ".8d4d914aea41/build/WebServer" ]  
+ENTRYPOINT [ "./build/WebServer" ]  

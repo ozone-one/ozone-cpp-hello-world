@@ -16,11 +16,8 @@ COPY . .
 EXPOSE 3000
 
 # Create build dir, configure CMake and run build
-RUN mkdir build
 RUN cmake -B build -S .
 RUN cmake --build build
 # Run the built application
-
-
 
 CMD ./build/WebServer

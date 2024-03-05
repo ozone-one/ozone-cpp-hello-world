@@ -25,4 +25,4 @@ COPY --from=builder /build /build
 EXPOSE 3000
 
 # Run the built application
-CMD ls / && ls /build && /build/WebServer
+CMD  /build/WebServer

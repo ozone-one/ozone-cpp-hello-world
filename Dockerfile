@@ -1,26 +1,20 @@
-# Get the base Ubuntu image from Docker Hub
-FROM ubuntu:latest as builder
-# Update required apps on the base image
-RUN apt-get -y update && apt-get install -y
-RUN apt-get -y install g++ cmake
-# Copy the current folder which contains C++ source code to the Docker image
+# Use Alpine Linux as base image
+FROM alpine:latest
+
+# Set working directory
+WORKDIR /app
+
+# Install necessary packages
+RUN apk --no-cache add g++ cmake make
+
+# Copy source code to container
 COPY . .
-# Specify the working directory
-WORKDIR .
 
+# Build the server
+RUN g++ -o server main.cpp
 
-# Create build dir, configure CMake and run build
-RUN mkdir build
-RUN cmake -B build -S .
-RUN cmake --build build
+# Expose port 8000
+EXPOSE 8000
 
-FROM ubuntu:latest
-# RUN apt-get -y update && apt-get install -y
-# RUN apt-get -y install g++ cmake
-COPY --from=builder /build /build
-WORKDIR /
-
-EXPOSE 3000
-
-# Run the built application
-ENTRYPOINT [ "./build/WebServer" ]  
+# Command to run the server
+CMD ["./server"]

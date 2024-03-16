@@ -13,8 +13,8 @@ COPY . .
 # Build the server
 RUN g++ -o server main.cpp
 
-# Expose port 8000
-EXPOSE 8000
+# Expose port 3000
+EXPOSE 3000
 
 # Command to run the server
 CMD ["./server"]
